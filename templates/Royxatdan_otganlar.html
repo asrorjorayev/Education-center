@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registered Users List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Royxatdan o'tganlar</h1>
+
+    <table>
+        <thead style="color: black;">
+            <tr >
+                <body  style="color: black;" >
+                    <th >Ism</th>
+                    <th>Familiya</th>
+                    <th>Telefon</th>
+                    <th>Kurs</th>
+                    <th>Dars Kunlari</th>
+                    <th>Izoh</th>   
+                </body>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in royhat %}
+                <tr>
+                    <td>{{ user.ism }}</td>
+                    <td>{{ user.familya }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>{{ user.kurs }}</td>
+                    <td>{{ user.dars_kunlari }}</td>
+                    <td>{{ user.izoh }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">Ro'yxatda hali foydalanuvchilar mavjud emas</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
+{% endblock %}

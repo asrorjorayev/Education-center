@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<title>Profile Sahifasi</title>
+<style>
+    body {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        background-color: #f0f4f8; /* Yengil kulrang rang */
+        padding: 30px;
+    }
+
+    .card {
+        max-width: 600px; /* Karta kengligini oshirish */
+        margin: 0 auto;
+        background-color: #ffffff; /* Oq rang */
+        padding: 30px; /* Ichki bo'shliqni oshirish */
+        border-radius: 20px; /* Yumshoq burchaklar */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Yumshoq soyalar */
+        text-align: center; /* Markazda joylashuvi */
+        transition: transform 0.3s; /* O'tish effekti */
+    }
+
+    .card:hover {
+        transform: translateY(-5px); /* Hover holatida ko'tarish effekti */
+    }
+
+    h1 {
+        color: #333; /* Qorong'u qora rang */
+        margin-bottom: 20px; /* Pastki bo'shliq */
+        font-size: 2em; /* Katta o'lcham */
+        text-align: center; /* Markazga qo'yish */
+    }
+
+    .image {
+        margin-bottom: 20px; /* Pastki bo'shliq */
+    }
+
+    .image img {
+        border-radius: 50%; /* Yumshoq rasm */
+        height: 150px; /* Katta o'lcham */
+        width: 150px; /* Katta o'lcham */
+        border: 4px solid #007bff; /* Ko'k rangdagi chekka */
+    }
+
+    .name {
+        font-size: 1.5em; /* Katta o'lcham */
+        color: #007bff; /* Ko'k rang */
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    .idd {
+        font-size: 1.1em; /* O'lcham */
+        color: #555; /* Yengil qora rang */
+        margin-top: 5px;
+    }
+
+    .follow {
+        font-size: 1.1em; /* O'lcham */
+        color: #d32f2f; /* Qizil rang */
+        margin: 10px 0;
+    }
+
+    .btn-outline-success {
+        display: inline-block; /* Inline blok */
+        margin-top: 20px; /* Yuqoridan bo'shliq */
+        padding: 12px 25px; /* Kengaytirilgan joy */
+        border: 2px solid #28a745; /* Yashil chekka */
+        border-radius: 25px; /* Yumshoq burchaklar */
+        background-color: transparent; /* Shaffof fon */
+        color: #28a745; /* Yashil rang */
+        text-decoration: none; /* Chizish yo'q */
+        transition: all 0.3s ease; /* O'tish effekti */
+        font-weight: bold; /* Qalin matn */
+        font-size: 1em; /* O'lcham */
+    }
+
+    .btn-outline-success:hover {
+        background-color: #28a745; /* Hover holatidagi rang */
+        color: #ffffff; /* Oq rang */
+    }
+
+    .date {
+        margin-top: 20px; /* Yuqoridan bo'shliq */
+        color: #777; /* Yengil kulrang rang */
+        font-size: 0.9em; /* O'lcham */
+    }
+
+    .join {
+        font-style: italic; /* Italik shaklda */
+        color: #007bff; /* Ko'k rang */
+    }
+</style>
+
+<h1>Profil Ko'rinishi</h1>
+<div class="card">
+    <div class="image">
+        {% if user.image %}
+        <img src="{{ user.image.url }}" alt="Profil Rasm">
+        {% endif %}
+    </div>
+    <span class="name">{{ user.username }}</span>
+    <span class="idd">{{ user.email }}</span>
+    <div class="follow">{{ user.phone_number }}</div>
+    <a href="{% url 'users:update' %}" class="btn btn-outline-success">Profilni Tahrirlash</a>
+    <div class="date">Qo'shilgan sana: {{ user.date_joined|date:"M d, Y" }}</div>
+</div>
+{% endblock %}
